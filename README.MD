@@ -1,103 +1,183 @@
-# sdk
+# SDK ONHANDBI
 
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/bagiit/obis/sdk.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/bagiit/obis/sdk/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
----
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-
-Choose a self-explaining name for your project.
-
-## Description
-
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+[![Downloads](https://img.shields.io/npm/dt/@onhand-bi-dev/sdk.svg?style=flat&color=success)](https://www.npmjs.com/package/@onhand-bi-dev/sdk)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/@onhand-bi-dev/sdk)
+[![Build Size](https://img.shields.io/bundlejs/size/@onhand-bi-dev/sdk)](https://pkg-size.dev/@onhand-bi-dev/sdk)
+[![Version](https://img.shields.io/npm/v/@onhand-bi-dev/sdk?style=flat&color=success)](https://www.npmjs.com/package/@onhand-bi-dev/sdk)
+<a href="https://pkg-size.dev/@onhand-bi-dev/sdk"><img src="https://pkg-size.dev/badge/install/103906" title="Install size for @onhand-bi-dev/sdk"></a>
+<a href="https://pkg-size.dev/@onhand-bi-dev/sdk"><img src="https://pkg-size.dev/badge/bundle/24854" title="Bundle size for @onhand-bi-dev/sdk"></a>
 
 ## Installation
 
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+```bash
+npm i @onhand-bi-dev/sdk
+# or
+# yarn add @onhand-bi-dev/sdk
+```
 
-## Usage
+## Import
 
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+```js
+import OHBI from "@onhand-bi-dev/sdk";
+```
 
-## Support
+## Examples
 
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+### Auth
 
-## Roadmap
+```js
+const accessToken = "<your access token>";
+const OHBI_SDK = await OHBI.newClient(accessToken);
+```
 
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### Get List Report
 
-## Contributing
+This method retrieves a list of reports.
 
-State if you are open to contributions and what your requirements are for accepting them.
+#### Parameters:
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+page (number, optional): The page number of the report list. Default is 1.
+searchText (string, optional): The search text to filter reports. Default is an empty string.
+Returns:
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+A Promise that resolves to an array of Report objects representing the reports.
 
-## Authors and acknowledgment
+#### Example:
 
-Show your appreciation to those who have contributed to the project.
+```js
+OHBI_SDK.getReports(1, "search text")
+  .then((reports) => {
+    // Process the list of reports
+    console.log("Reports:", reports);
+  })
+  .catch((error) => {
+    console.log("Error retrieving reports:", error);
+  });
+```
 
-## License
+### Get Report
 
-For open source projects, say how it is licensed.
+This method retrieves a specific report by its ID.
 
-## Project status
+#### Parameters:
 
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+reportId (number): The ID of the report.
+isOwner (boolean, optional): Indicates whether the client is the owner of the report. Default is false.
+Returns:
+
+A Promise that resolves to a Report object representing the report, or null if the report is not found.
+
+#### Example:
+
+```js
+const reportId = 12345;
+
+OHBI_SDK.getReport(reportId)
+  .then((report) => {
+    if (report) {
+      // Process the report
+      console.log("Report:", report);
+    } else {
+      console.log("Report not found");
+    }
+  })
+  .catch((error) => {
+    console.log("Error retrieving report:", error);
+  });
+```
+
+### Load Report
+
+This method loads a report into an HTML element identified by the specified tag ID.
+
+#### Parameters:
+
+reportId (number): The ID of the report to load.
+tagId (string): The ID of the HTML element where the report should be loaded.
+isOwner (boolean, optional): Indicates whether the client is the owner of the report. Default is false.
+Example:
+
+```js
+const reportId = 12345;
+const tagId = "report-container";
+
+OHBI_SDK.loadReport(reportId, tagId, true);
+```
+
+### Load App
+
+This method loads an app into an HTML element identified by the specified tag ID.
+
+#### Parameters:
+
+appId (number): The ID of the app to load.
+tagId (string): The ID of the HTML element where the app should be loaded.
+isOwner (boolean, optional): Indicates whether the client is the owner of the app. Default is false.
+
+#### Example:
+
+```js
+const appId = 54321;
+const tagId = "app-container";
+
+client.loadApp(appId, tagId, false);
+```
+
+### Get App
+
+This method retrieves a specific app by its ID.
+
+#### Parameters:
+
+appId (number): The ID of the app.
+isOwner (boolean, optional): Indicates whether the client is the owner of the app. Default is false.
+
+#### Returns:
+
+A Promise that resolves to an AppModel object representing the app, or null if the app is not found.
+
+#### Example:
+
+```js
+const appId = 54321;
+
+OHBI_SDK.getApp(appId)
+  .then((app) => {
+    if (app) {
+      // Process the app
+      console.log("App:", app);
+    } else {
+      console.log("App not found");
+    }
+  })
+  .catch((error) => {
+    console.log("Error retrieving app:", error);
+  });
+```
+
+### Get List App
+
+This method retrieves a list of apps.
+
+#### Parameters:
+
+page (number, optional): The page number of the app list. Default is 1.
+searchText (string, optional): The search text to filter apps. Default is an empty string.
+isOwner (boolean, optional): Indicates whether the client is the owner of the app. Default is false.
+
+#### Returns:
+
+A Promise that resolves to an array of AppModel objects representing the apps.
+
+#### Example:
+
+```js
+OHBI_SDK.getApps(1, "search text", false)
+  .then((apps) => {
+    // Process the list of apps
+    console.log("Apps:", apps);
+  })
+  .catch((error) => {
+    console.log("Error retrieving apps:", error);
+  });
+```
